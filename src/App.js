@@ -1,6 +1,10 @@
 
 import './App.css';
-import ExpenseItems from  './components/expenseItems';
+import ExpenseItems from  './components/ExpenseItems';
+import Card from './components/Card'
+import React from 'react';
+import reactDom from 'react-dom';
+import NewExpense from './components/NewExpense/NewExpense';
 
 function App() {
     
@@ -25,13 +29,18 @@ const expenses = [
     date: new Date(2021, 5, 12),
   },
 ]
+const addExpenseHandler=(expense)=>{
+  console.log("In app.js")
+  console.log(expense)
+}
   return (
-    <div >
+    <Card className="expenses">
+      < NewExpense onAddExpense={addExpenseHandler} />
       <ExpenseItems title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date}></ExpenseItems>
       <ExpenseItems title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date}></ExpenseItems>
       <ExpenseItems title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date}></ExpenseItems>
     
-    </div>
+    </Card>
   );
 }
 
