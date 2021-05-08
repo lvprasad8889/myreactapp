@@ -1,14 +1,13 @@
 
 import './App.css';
-import ExpenseItems from  './components/ExpenseItems';
-import Card from './components/Card'
-import React from 'react';
-import reactDom from 'react-dom';
+
+import React, { useState } from 'react';
 import NewExpense from './components/NewExpense/NewExpense';
+import Expense from './components/Expense'
 
 function App() {
     
-const expenses = [
+const dummyExpenses = [
   {
     id: 'e1',
     title: 'Toilet Paper',
@@ -29,18 +28,19 @@ const expenses = [
     date: new Date(2021, 5, 12),
   },
 ]
+const [expenses,setExpenses]=useState(dummyExpenses);
 const addExpenseHandler=(expense)=>{
-  console.log("In app.js")
-  console.log(expense)
+  
+  setExpenses((prevExpenses)=>{
+    return [expense,...prevExpenses];
+  })
+  
 }
   return (
-    <Card className="expenses">
+    <div className="expenses">
       < NewExpense onAddExpense={addExpenseHandler} />
-      <ExpenseItems title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date}></ExpenseItems>
-      <ExpenseItems title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date}></ExpenseItems>
-      <ExpenseItems title={expenses[2].title} amount={expenses[2].amount} date={expenses[2].date}></ExpenseItems>
-    
-    </Card>
+      <Expense  items={expenses} />
+    </div>
   );
 }
 

@@ -68,7 +68,7 @@ function ExpenseForm(props){
                 </div>
             </div>
             <div className="new-expense__actions">
-                <button type="submit" className="">
+                <button type="submit" className="btn btn-info">
                     Add Expensive
                     </button>
             </div>
